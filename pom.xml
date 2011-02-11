@@ -31,7 +31,7 @@
         <repository>
             <id>JBoss</id>
             <name>jbossRepository</name>
-            <url>http://repository.jboss.org/nexus/content/groups/public/module-jpa-hibernate</url>
+            <url>http://repository.jboss.org/nexus/content/groups/public</url>
         </repository>
     </repositories>
 
