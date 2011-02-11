@@ -25,13 +25,13 @@
         <repository>
             <id>lutece</id>
             <name>luteceRepository</name>
-            <url>http://dev.lutece.paris.fr/maven_repository</url>
+            <url>http://dev.lutece.paris.fr/maven_repository/module-jpa-hibernate</url>
             <layout>default</layout>
         </repository>
         <repository>
             <id>JBoss</id>
             <name>jbossRepository</name>
-            <url>http://repository.jboss.org/nexus/content/groups/public</url>
+            <url>http://repository.jboss.org/nexus/content/groups/public/module-jpa-hibernate</url>
         </repository>
     </repositories>
 
@@ -75,8 +75,8 @@
         </dependency>
     </dependencies>
     <scm>
-        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical</connection>
-        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical</developerConnection>
-        <url>http://dev.lutece.paris.fr/viewvc/portal/trunk/plugins/technical</url>
+        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical/module-jpa-hibernate</connection>
+        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/technical/module-jpa-hibernate</developerConnection>
+        <url>http://dev.lutece.paris.fr/viewvc/portal/trunk/plugins/technical/module-jpa-hibernate</url>
     </scm>
 </project>
