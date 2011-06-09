@@ -17,8 +17,8 @@
 		<componentName>Jpahibernate</componentName>
  		<jiraProjectName>JPAHIBERNATE</jiraProjectName>
 		<jiraComponentId>10353</jiraComponentId>
-        <hibernate-entitymanager-version>3.6.4.Final</hibernate-entitymanager-version>
-        <cglib-version>2.2.2</cglib-version>
+		<hibernate-entitymanager-version>3.6.5.Final</hibernate-entitymanager-version>
+		<cglib-version>2.2.2</cglib-version>
     </properties>
 
     <repositories>
