@@ -29,8 +29,19 @@
                 <entry key="hibernate.id.new_generator_mappings" value="true" />
                 <!-- uncomment the following line to enable db generation -->
                 <!-- <entry key="hibernate.hbm2ddl.auto" value="update" />  -->
+                <!-- uncomment the following lines to enable caching -->
+                <!-- <entry key="javax.persistence.sharedCache.mode" value="ENABLE_SELECTIVE" /> 
+                <entry key="hibernate.cache.use_query_cache" value="true" />
+                <entry key="hibernate.cache.region.factory_class" value="net.sf.ehcache.hibernate.EhCacheRegionFactory"/>  -->
          </map>
         </constructor-arg>
+       </bean>
+       
+       <!-- Monitoring -->
+       <bean id="jpa-hibernate.monitorService" class="fr.paris.lutece.plugins.jpa.modules.hibernate.service.HibernateMonitorService">
+       	<property name="entityManagerService" ref="entityManagerService" />
+       	<property name="JMXEnabled" value="false" />
+       	<property name="statisticsEnabled" value="false" />
        </bean>
 
 

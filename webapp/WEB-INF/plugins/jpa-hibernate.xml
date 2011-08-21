@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><plug-in>
    <name>jpa-hibernate</name>
-   <class>fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation</class>
+   <class>fr.paris.lutece.plugins.jpa.modules.hibernate.service.HibernatePlugin</class>
    <version>1.0.4</version>
    <description>module.jpa.hibernate.module.description</description>
    <documentation/>
@@ -16,4 +16,14 @@
 		<max-core-version/>	
    </core-version-dependency>
    <db-pool-required>0</db-pool-required>
+   <admin-features>
+        <admin-feature>
+            <feature-id>HIBERNATE_MONITOR</feature-id>
+            <feature-title>module.jpa.hibernate.monitor.adminFeature.title</feature-title>
+            <feature-description>module.jpa.hibernate.monitor.adminFeature.description</feature-description>
+            <feature-level>1</feature-level>
+            <feature-url>jsp/admin/plugins/jpa/modules/hibernate/Monitor.jsp</feature-url>
+        </admin-feature>
+    </admin-features>
+   
 </plug-in>
