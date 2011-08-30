@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
 	<properties>
-		<title>Plugin</title>
+		<title>Module jpa hibernate</title>
 	</properties>
 	<body>
-		<section name="Plugin">
+		<section name="Module jpa hibernate">
 			<subsection name="Introduction">
+				Module jpa hibernate
 			</subsection>
 		</section>
 	</body>
