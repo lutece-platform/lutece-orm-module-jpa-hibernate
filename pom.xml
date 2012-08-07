@@ -28,11 +28,11 @@
             <url>http://dev.lutece.paris.fr/maven_repository</url>
             <layout>default</layout>
         </repository>
-        <repository>
+        <!-- <repository>
             <id>JBoss</id>
             <name>jbossRepository</name>
             <url>http://repository.jboss.org/nexus/content/groups/public</url>
-        </repository>
+        </repository> -->
     </repositories>
 
     <dependencies>
