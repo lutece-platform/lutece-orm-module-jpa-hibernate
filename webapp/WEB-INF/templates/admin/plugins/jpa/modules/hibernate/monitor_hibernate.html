@@ -1,258 +1,178 @@
-   <div class="content-box">
-	    <h2>#i18n{module.jpa.hibernate.monitor.stats.title}</h2>
+<div class="row" >
+	<div class="container" >
+		<div class="span10 offset1">
+		<fieldset>
+		<legend>#i18n{module.jpa.hibernate.monitor.stats.title}</legend>
 	    <p>
-	    <label>#i18n{module.jpa.hibernate.monitor.stats.state} : </label>
-	    	<#if stats_state>
+			<strong>#i18n{module.jpa.hibernate.monitor.stats.state}</strong>
+	    	<span class="label label-inverse">
+			<#if stats_state>
 	    		#i18n{module.jpa.hibernate.monitor.jmx.activated}
 	    	<#else>
 	    		#i18n{module.jpa.hibernate.monitor.jmx.notActivated}
 	    	</#if>
+			</span>
 	    </p>
-	    <p>
-	    <label for="stats_state">&nbsp;</label>
 	    <#if !stats_state>
-	    <form method="post" action="jsp/admin/plugins/jpa/modules/hibernate/DoEnableStatistics.jsp">
-	    	<input type="submit" id="stats_state" name="stats_state" value="#i18n{module.jpa.hibernate.monitor.stats.buttonEnable}" class="button" />
-	    </form>
+			<form class="form-horizontal" method="post" action="jsp/admin/plugins/jpa/modules/hibernate/DoEnableStatistics.jsp">
+				<button class="btn btn-success" type="submit"><i class="icon-ok icon-white"></i>&nbsp;#i18n{module.jpa.hibernate.monitor.stats.buttonEnable}</button>
+			</form>
 	    <#else>
-	    <form method="post" action="jsp/admin/plugins/jpa/modules/hibernate/DoDisableStatistics.jsp">
-	    	<input type="submit" id="stats_state" name="stats_state" value="#i18n{module.jpa.hibernate.monitor.stats.buttonDisable}" class="button" />
-	    </form>
+			<form class="form-horizontal" method="post" action="jsp/admin/plugins/jpa/modules/hibernate/DoDisableStatistics.jsp">
+				<button class="btn btn-danger" type="submit" ><i class="icon-remove icon-white"></i>&nbsp;#i18n{module.jpa.hibernate.monitor.stats.buttonDisable}</button>
+			</form>
 	    </#if>
-	    </p>
-    </div>
-   
-   <div class="content-box">
-	    <h2>#i18n{module.jpa.hibernate.monitor.jmx.title}</h2>
-	    <p>
-	    <label>#i18n{module.jpa.hibernate.monitor.jmx.status} : </label>
-	    	<#if jmx_state>
-	    		#i18n{module.jpa.hibernate.monitor.jmx.activated}
-	    	<#else>
-	    		#i18n{module.jpa.hibernate.monitor.jmx.notActivated}
-	    	</#if>
-	    </p>
-	    <#if !jmx_state>
-	    <label for="activate_jmx">&nbsp;</label>   
-	    <form method="post" action="jsp/admin/plugins/jpa/modules/hibernate/DoActivateJMX.jsp">
-	    	<input type="submit" id="activate_jmx" name="activate_jmx" value="#i18n{module.jpa.hibernate.monitor.jmx.buttonActivate}" class="button" />
-	    </form>
-	    </#if>
-    </div>
-    
-    <#list list_stats as stat>
-    	 <div class="content-box">
-    		<h2>#i18n{module.jpa.hibernate.monitor.stats.pool} : ${stat.poolName}</h2>
-    		
-    		<p>
-    		<label for="">&nbsp;</label>
-    		<form method="post" action="jsp/admin/plugins/jpa/modules/hibernate/DoClearStatistics.jsp">
-    			<input type="hidden" name="pool_name" value="${stat.poolName}" />
-	    		<input type="submit" id="activate_jmx" name="activate_jmx" value="#i18n{module.jpa.hibernate.monitor.stats.buttonClear}" class="button" />
-	    	</form>
-	    	</p>
+		</div>
+	</div>
+</div>
+<div class="row" >
+	<div class="container" >
+		<div class="span10 offset1">
+		<fieldset>
+		<legend>#i18n{module.jpa.hibernate.monitor.jmx.title}</legend>
+			<p>
+			<strong>#i18n{module.jpa.hibernate.monitor.jmx.status}</strong>
+			<span class="label label-inverse">
+				<#if jmx_state>
+					#i18n{module.jpa.hibernate.monitor.jmx.activated}
+				<#else>
+					#i18n{module.jpa.hibernate.monitor.jmx.notActivated}
+				</#if>
+			</span>	
+			</p>
+			<#if !jmx_state>
+				<form class="form-horizontal" method="post" action="jsp/admin/plugins/jpa/modules/hibernate/DoActivateJMX.jsp">
+					<button class="btn btn-primary" type="submit" >#i18n{module.jpa.hibernate.monitor.jmx.buttonActivate}</button>
+				</form>
+			</#if>
+		</fieldset>	
+		<#list list_stats as stat>
+    	<fieldset>
+			<legend>#i18n{module.jpa.hibernate.monitor.stats.pool} : ${stat.poolName}</legend>
+    		<form class="form-horizontal" method="post" action="jsp/admin/plugins/jpa/modules/hibernate/DoClearStatistics.jsp">
+    		<input type="hidden" name="pool_name" value="${stat.poolName}" />
+				<button class="btn btn-primary" type="submit" >#i18n{module.jpa.hibernate.monitor.stats.buttonClear}</button>
+			</form>
 	    	
 	    	<#if stat.stats.statisticsEnabled>
-<#-- Uncomment when freemarker is upgrade to provide number_to_datetime
-    		<p>
-    		<label for="">#i18n{module.jpa.hibernate.monitor.stats.startTime} : </label>
-    		${stat.stats.startTime?number_to_datetime} 
-    		</p>
--->
-    		 
-    		
-    		<div class="highlight-box">
-    		<h2>#i18n{module.jpa.hibernate.monitor.stats.sessions}</h2>
-    		<p>
-    		<label for="">connectCount : </label>
-    		${stat.stats.connectCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">sessionCloseCount : </label>
-    		${stat.stats.sessionCloseCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">sessionOpenCount : </label>
-    		${stat.stats.sessionOpenCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">flushCount : </label>
-    		${stat.stats.flushCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">successfulTransactionCount : </label>
-    		${stat.stats.successfulTransactionCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">transactionCount : </label>
-    		${stat.stats.transactionCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">optimisticFailureCount : </label>
-    		${stat.stats.optimisticFailureCount?default("N/A")}
-    		</p>
-    		
-    		</div>
-
-
-    		<div class="highlight-box">
-    		<h2>#i18n{module.jpa.hibernate.monitor.stats.entities}</h2>
-    		<p>
-    		<label for="">entityDeleteCount : </label>
-    		${stat.stats.entityDeleteCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">entityLoadCount : </label>
-    		${stat.stats.entityLoadCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">entityFetchCount : </label>
-    		${stat.stats.entityFetchCount?default("N/A")}
-    		</p>
-    		
+			<#-- Uncomment when freemarker is upgrade to provide number_to_datetime
+    		<p><strong>#i18n{module.jpa.hibernate.monitor.stats.startTime}: </strong>
+				 <span class="label label-inverse">${stat.stats.startTime?number_to_datetime}</span>	</p>
+			-->
+		</fieldset>
+		<fieldset>
+			<legend>#i18n{module.jpa.hibernate.monitor.stats.sessions}</legend>
+    		<p>connectCount : ${stat.stats.connectCount?default("N/A")}</p>
+    		<p>sessionCloseCount : ${stat.stats.sessionCloseCount?default("N/A")}</p>
+    		<p>sessionOpenCount : ${stat.stats.sessionOpenCount?default("N/A")}</p>
+    		<p>flushCount : ${stat.stats.flushCount?default("N/A")}</p>
+    		<p>successfulTransactionCount : ${stat.stats.successfulTransactionCount?default("N/A")}</p>
+    		<p>transactionCount : ${stat.stats.transactionCount?default("N/A")}</p>
+    		<p>optimisticFailureCount : ${stat.stats.optimisticFailureCount?default("N/A")}</p>
+    	</fieldset>
+		<fieldset>
+    		<legend>#i18n{module.jpa.hibernate.monitor.stats.entities}</legend>
+    		<p>entityDeleteCount : ${stat.stats.entityDeleteCount?default("N/A")}</p>
+    		<p>entityLoadCount : ${stat.stats.entityLoadCount?default("N/A")}</p>
+    		<p>entityFetchCount : ${stat.stats.entityFetchCount?default("N/A")}</p>
     		<#if stat.stats.entityNames?has_content>
-    		
-    		<table>
+    		<table class="table table-striped table-condensed">
     		<tr>
-    		<th>Entite</th>
-    		<th>loadCount</th>
-    		<th>fetchCount</th>
-    		<th>optimisticFailureCount</th>
-    		<th>insertCount</th>
-    		<th>updateCount</th>
-    		<th>deleteCount</th>
+				<th>Entite</th>
+				<th>loadCount</th>
+				<th>fetchCount</th>
+				<th>optimisticFailureCount</th>
+				<th>insertCount</th>
+				<th>updateCount</th>
+				<th>deleteCount</th>
     		</tr>
-    		
-    		
     		<#list stat.stats.entityNames as entity>
-    		<#assign entity_stats = stat.stats.getEntityStatistics(entity) />
+			<#assign entity_stats = stat.stats.getEntityStatistics(entity) />
     		<tr>
-    		<td>${entity}</td>
-    		<td>${entity_stats.loadCount?default("N/A")}</td>
-    		<td>${entity_stats.fetchCount?default("N/A")}</td>
-    		<td>${entity_stats.optimisticFailureCount?default("N/A")}</td>
-    		<td>${entity_stats.insertCount?default("N/A")}</td>
-    		<td>${entity_stats.updateCount?default("N/A")}</td>
-    		<td>${entity_stats.deleteCount?default("N/A")}</td>
+				<td>${entity}</td>
+				<td>${entity_stats.loadCount?default("N/A")}</td>
+				<td>${entity_stats.fetchCount?default("N/A")}</td>
+				<td>${entity_stats.optimisticFailureCount?default("N/A")}</td>
+				<td>${entity_stats.insertCount?default("N/A")}</td>
+				<td>${entity_stats.updateCount?default("N/A")}</td>
+				<td>${entity_stats.deleteCount?default("N/A")}</td>
     		</tr> 
     		</#list>
     		</table>
 			</#if>    		
-    		</div>
-
-    		<div class="highlight-box">
-    		<h2>#i18n{module.jpa.hibernate.monitor.stats.queries}</h2>
-    		<p>
-    		<label for="">queryExecutionCount : </label>
-    		${stat.stats.queryExecutionCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">queryExecutionMaxTime : </label>
-    		${stat.stats.queryExecutionMaxTime!?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">queryExecutionMaxTimeQueryString : </label>
-    		${stat.stats.queryExecutionMaxTimeQueryString?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">queries : </label>
-    		<#if stat.stats.queries?has_content>
-    		<table>
-    		<tr>
-    		<th>query</th>
-    		<th>executionCount</th>
-    		<th>executionAvgTime</th>
-    		<th>executionMaxTime</th>
-    		<th>cacheHitCount</th>
-    		<th>cacheMissCount</th>
-    		<th>cachePutCount</th>
-    		</tr>
-    		<#list stat.stats.queries as query>
-    		<tr>
-    		<td>${query}</td>
-    		<#assign query_stats = stat.stats.getQueryStatistics(query) />
-    		<td>${query_stats.executionCount?default("N/A")}</td>
-    		<td>${query_stats.executionAvgTime?default("N/A")}</td>
-    		<td>${query_stats.executionMaxTime?default("N/A")}</td>
-    		<td>${query_stats.cacheHitCount?default("N/A")}</td>
-    		<td>${query_stats.cacheMissCount?default("N/A")}</td>
-    		<td>${query_stats.cachePutCount?default("N/A")}</td>
-    		</tr>
-    		</#list>
-    		</table>
+    		</fieldset>
+			<fieldset>
+    		<legend>#i18n{module.jpa.hibernate.monitor.stats.queries}</legend>
+				<p>queryExecutionCount : ${stat.stats.queryExecutionCount?default("N/A")}</p>
+				<p>queryExecutionMaxTime : ${stat.stats.queryExecutionMaxTime!?default("N/A")}</p>
+				<p>queryExecutionMaxTimeQueryString : ${stat.stats.queryExecutionMaxTimeQueryString?default("N/A")}</p>
+				<p>queries :</p>
+				<#if stat.stats.queries?has_content>
+					<table class="table table-striped table-condensed">
+					<tr>
+						<th>query</th>
+						<th>executionCount</th>
+						<th>executionAvgTime</th>
+						<th>executionMaxTime</th>
+						<th>cacheHitCount</th>
+						<th>cacheMissCount</th>
+						<th>cachePutCount</th>
+					</tr>
+					<#list stat.stats.queries as query>
+					<tr>
+						<td>${query}</td>
+						<#assign query_stats = stat.stats.getQueryStatistics(query) />
+						<td>${query_stats.executionCount?default("N/A")}</td>
+						<td>${query_stats.executionAvgTime?default("N/A")}</td>
+						<td>${query_stats.executionMaxTime?default("N/A")}</td>
+						<td>${query_stats.cacheHitCount?default("N/A")}</td>
+						<td>${query_stats.cacheMissCount?default("N/A")}</td>
+						<td>${query_stats.cachePutCount?default("N/A")}</td>
+					</tr>
+					</#list>
+					</table>
+				<#else>
+					<p><strong>N/A</strong></p>
+				</#if>
+			</fieldset>	
+			<fieldset>	
+    		<legend>#i18n{module.jpa.hibernate.monitor.stats.cache}</legend>
+				<p>queryCacheHitCount : ${stat.stats.queryCacheHitCount?default("N/A")}</p>
+				<p>queryCacheMissCount : ${stat.stats.queryCacheMissCount?default("N/A")}</p>
+				<p>queryCachePutCount : ${stat.stats.queryCachePutCount?default("N/A")}</p>
+				<p>secondLevelCacheHitCount : ${stat.stats.secondLevelCacheHitCount?default("N/A")}</p>
+				<p>secondLevelCacheMissCount : ${stat.stats.secondLevelCacheMissCount?default("N/A")}</p>
+				<p>secondLevelCachePutCount : </label>${stat.stats.secondLevelCachePutCount?default("N/A")}	</p>
+				<#if stat.stats.secondLevelCacheRegionNames?has_content>
+				<table class="table table-striped table-condensed">
+					<tr>
+						<th>Region</th>
+						<th>hitCount</th>
+						<th>missCount</th>
+						<th>putCount</th>
+						<th>elementCountInMemory</th>
+						<th>elementCountOnDisk</th>
+						<th>sizeInMemory</th>
+					<tr>
+					<#list stat.stats.secondLevelCacheRegionNames as region>
+					<tr>
+						<td>${region}</td>
+						<#assign region_stats=stat.stats.getSecondLevelCacheStatistics(region) />
+						<td>${region_stats.hitCount?default("N/A")}</td>
+						<td>${region_stats.missCount?default("N/A")}</td>
+						<td>${region_stats.putCount?default("N/A")}</td>
+						<td>${region_stats.elementCountInMemory?default("N/A")}</td>
+						<td>${region_stats.elementCountOnDisk?default("N/A")}</td>
+						<td>${region_stats.sizeInMemory?default("N/A")}</td>
+					</tr>
+					</#list>
+				</table>
+				</#if>
     		<#else>
-    		N/A
-    		</#if>
-    		</p>
-    		
-    		</div>
-
-
-    		<div class="highlight-box">
-    		<h2>#i18n{module.jpa.hibernate.monitor.stats.cache}</h2>
-    		<p>
-    		<label for="">queryCacheHitCount : </label>
-    		${stat.stats.queryCacheHitCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">queryCacheMissCount : </label>
-    		${stat.stats.queryCacheMissCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">queryCachePutCount : </label>
-    		${stat.stats.queryCachePutCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">secondLevelCacheHitCount : </label>
-    		${stat.stats.secondLevelCacheHitCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">secondLevelCacheMissCount : </label>
-    		${stat.stats.secondLevelCacheMissCount?default("N/A")}
-    		</p>
-    		<p>
-    		<label for="">secondLevelCachePutCount : </label>
-    		${stat.stats.secondLevelCachePutCount?default("N/A")}
-    		</p>
-    		
-    		<#if stat.stats.secondLevelCacheRegionNames?has_content>
-    		<table>
-    		<tr>
-    		<th>Region</th>
-    		<th>hitCount</th>
-    		<th>missCount</th>
-    		<th>putCount</th>
-    		<th>elementCountInMemory</th>
-    		<th>elementCountOnDisk</th>
-    		<th>sizeInMemory</th>
-    		<tr>
-    		
-    		<#list stat.stats.secondLevelCacheRegionNames as region>
-    		<tr>
-    		<td>${region}</td>
-    		<#assign region_stats=stat.stats.getSecondLevelCacheStatistics(region) />
-    		<td>${region_stats.hitCount?default("N/A")}</td>
-    		<td>${region_stats.missCount?default("N/A")}</td>
-    		<td>${region_stats.putCount?default("N/A")}</td>
-    		<td>${region_stats.elementCountInMemory?default("N/A")}</td>
-    		<td>${region_stats.elementCountOnDisk?default("N/A")}</td>
-    		<td>${region_stats.sizeInMemory?default("N/A")}</td>
-    		</tr>
-    		</#list>
-    		
-    		</table>
-    		</#if>
-    		
-    		</div>
-    		
-    		<#else>
-    		
     		<#-- statistics disabled-->
-    		<p>
-    			#i18n{module.jpa.hibernate.monitor.stats.disabled}
-    		</p>
-    		
+				<p class="label label-warning">#i18n{module.jpa.hibernate.monitor.stats.disabled}</p>
     		</#if>
-    		
-        </div>
-    </#list>
+    	</#list>
+		</div>
+	</div>
+</div>
