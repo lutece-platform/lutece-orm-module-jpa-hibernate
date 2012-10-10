@@ -19,7 +19,7 @@
 			</form>
 	    <#else>
 			<form class="form-horizontal" method="post" action="jsp/admin/plugins/jpa/modules/hibernate/DoDisableStatistics.jsp">
-				<button class="btn btn-danger" type="submit" ><i class="icon-remove icon-white"></i>&nbsp;#i18n{module.jpa.hibernate.monitor.stats.buttonDisable}</button>
+				<button class="btn btn-danger btn-small" type="submit" ><i class="icon-remove icon-white"></i>&nbsp;#i18n{module.jpa.hibernate.monitor.stats.buttonDisable}</button>
 			</form>
 	    </#if>
 		</div>
@@ -42,7 +42,7 @@
 			</p>
 			<#if !jmx_state>
 				<form class="form-horizontal" method="post" action="jsp/admin/plugins/jpa/modules/hibernate/DoActivateJMX.jsp">
-					<button class="btn btn-primary" type="submit" >#i18n{module.jpa.hibernate.monitor.jmx.buttonActivate}</button>
+					<button class="btn btn-primary btn-small" type="submit" >#i18n{module.jpa.hibernate.monitor.jmx.buttonActivate}</button>
 				</form>
 			</#if>
 		</fieldset>	
@@ -51,7 +51,7 @@
 			<legend>#i18n{module.jpa.hibernate.monitor.stats.pool} : ${stat.poolName}</legend>
     		<form class="form-horizontal" method="post" action="jsp/admin/plugins/jpa/modules/hibernate/DoClearStatistics.jsp">
     		<input type="hidden" name="pool_name" value="${stat.poolName}" />
-				<button class="btn btn-primary" type="submit" >#i18n{module.jpa.hibernate.monitor.stats.buttonClear}</button>
+				<button class="btn btn-primary btn-small" type="submit" >#i18n{module.jpa.hibernate.monitor.stats.buttonClear}</button>
 			</form>
 	    	
 	    	<#if stat.stats.statisticsEnabled>
