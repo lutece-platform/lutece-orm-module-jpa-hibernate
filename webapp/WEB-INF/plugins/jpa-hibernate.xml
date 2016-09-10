@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><plug-in>
    <name>jpa-hibernate</name>
    <class>fr.paris.lutece.plugins.jpa.modules.hibernate.service.HibernatePlugin</class>
-   <version>1.0.7</version>
+   <version>1.0.8-SNAPSHOT</version>
    <description>module.jpa.hibernate.module.description</description>
    <documentation/>
    <installation/>
