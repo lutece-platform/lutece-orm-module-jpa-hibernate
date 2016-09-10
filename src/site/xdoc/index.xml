@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
-	<properties>
-		<title>Module jpa hibernate</title>
-	</properties>
-	<body>
-		<section name="Module jpa hibernate">
-			<subsection name="Introduction">
-				Module jpa hibernate
-			</subsection>
-		</section>
-	</body>
+    <properties>
+        <title>Module JPA Hibernate</title>
+    </properties>
+    <body>
+        <section name="Module JPA Hibernate">
+            <subsection name="Introduction">
+                <p>
+                    <img src="images/hibernate.png" />
+                </p>
+                <p>
+                    This module provides the JPA implementation, based on the Hibernate ORM solution, 
+                    for the native and build-in JPA 2.0 support available in Lutece.
+                </p>
+                <p>
+                    It also provides a back-office Hibernate Monitoring feature, 
+                    that shows statistics on entities, queries and cache performances.
+                </p>
+            </subsection>
+        </section>
+    </body>
 </document>
